@@ -1,6 +1,7 @@
 ﻿
 namespace StorageCalc
 {
+    using StorageCalc.Resources;
     using StorageCalc.ViewModels;
     using System;
     using System.Windows;
@@ -26,7 +27,7 @@ namespace StorageCalc
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Da ging was schief:\r\n\r\n" + ex);
+                MessageBox.Show(LocalizedStrings.Instance["SomethingWentWrong"] + "\r\n\r\n" + ex);
                 return;
             }
         }
