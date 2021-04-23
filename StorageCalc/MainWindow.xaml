@@ -5,6 +5,7 @@
         lex:LocalizeDictionary.DesignCulture="en"
         lex:ResxLocalizationProvider.DefaultAssembly="StorageCalc"
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+        DataContext="{Binding Path=MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Storage Calculator" Width="525" Height="280" Icon="nas.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
@@ -21,26 +22,26 @@
         </Grid.RowDefinitions>
 
         <TextBlock Name="NumberOfPlatesTextBlock" Grid.Row="0" Grid.Column="0" Text="{lex:Loc}" Margin="5"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Name="TxtDiskCount" Margin="5" Width="50" HorizontalAlignment="Left"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="TxtDiskCount" Text="{Binding DiskCount, Mode=TwoWay}" Margin="5" Width="50" HorizontalAlignment="Left"/>
 
         <TextBlock Name="SizeOfDiskInTBTextBlock" Grid.Row="1" Grid.Column="0" Text="{lex:Loc}" Margin="5"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="TxtDiskSpace" Margin="5" Width="50" HorizontalAlignment="Left"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="TxtDiskSpace" Text="{Binding DiskSpace, Mode=TwoWay}" Margin="5" Width="50" HorizontalAlignment="Left"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="RAID:" Margin="5"/>
         <WrapPanel Grid.Row="2" Grid.Column="1">
-            <RadioButton Content="RAID 0" Name="RbnRaid0" Margin="2"/>
-            <RadioButton Content="RAID 1" Name="RbnRaid1" Margin="2"/>
-            <RadioButton Content="RAID 5" Name="RbnRaid5" Margin="2"/>
-            <RadioButton Content="RAID 6" Name="RbnRaid6" Margin="2"/>
-            <RadioButton Content="RAID 10" Name="RbnRaid10" Margin="2"/>
+            <RadioButton Content="RAID 0" Name="RbnRaid0" IsChecked="{Binding Raid0, Mode=TwoWay}" Margin="2"/>
+            <RadioButton Content="RAID 1" Name="RbnRaid1" IsChecked="{Binding Raid1, Mode=TwoWay}" Margin="2"/>
+            <RadioButton Content="RAID 5" Name="RbnRaid5" IsChecked="{Binding Raid5, Mode=TwoWay}" Margin="2"/>
+            <RadioButton Content="RAID 6" Name="RbnRaid6" IsChecked="{Binding Raid6, Mode=TwoWay}" Margin="2"/>
+            <RadioButton Content="RAID 10" Name="RbnRaid10" IsChecked="{Binding Raid10, Mode=TwoWay}" Margin="2"/>
         </WrapPanel>
         
-        <Button Name="CalculateButton" Content="{lex:Loc}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Click="BtnCalculate_OnClick"/>
+        <Button Name="CalculateButton" Content="{lex:Loc}" Command="{Binding CalculateCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" />
 
         <TextBlock Name="UseableSpaceTextBlock" Text="{lex:Loc}" FontSize="20" Grid.Row="4" Grid.Column="0" TextAlignment="Left" Margin="5"/>
-        <TextBlock Name="TxtTotalSize" FontSize="20" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Margin="5"/>
+        <TextBlock Name="TxtTotalSize" FontSize="20" Text="{Binding TotalSpaceText}" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Margin="5"/>
 
         <TextBlock Name="FaultToleranceTextBlock" Text="{lex:Loc}" FontSize="20" Grid.Row="5" Grid.Column="0" TextAlignment="Left" Margin="5"/>
-        <TextBlock Name="TxtFaultTolerance" FontSize="20" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Margin="5"/>
+        <TextBlock Name="TxtFaultTolerance" Text="{Binding FaultToleranceText}" FontSize="20" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Margin="5"/>
     </Grid>
 </Window>

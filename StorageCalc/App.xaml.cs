@@ -1,4 +1,7 @@
-﻿using System.Globalization;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using StorageCalc.ViewModels;
+using System.Globalization;
 using System.Windows;
 using WPFLocalizeExtension.Engine;
 
@@ -12,6 +15,13 @@ namespace StorageCalc
         public App()
         {
             LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
+
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                    .AddSingleton<IMessageBoxHelper>(new MessageBoxHelper())
+                    .AddSingleton<MainWindowViewModel>()
+                    .BuildServiceProvider()
+                );
         }
     }
 }
