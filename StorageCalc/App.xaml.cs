@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using StorageCalc.Calculators;
 using StorageCalc.ViewModels;
 using System.Globalization;
 using System.Windows;
@@ -19,6 +20,7 @@ namespace StorageCalc
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IMessageBoxHelper>(new MessageBoxHelper())
+                    .AddSingleton<IRaidCalculatorFactory>(new RaidCalculatorFactory())
                     .AddSingleton<MainWindowViewModel>()
                     .BuildServiceProvider()
                 );
